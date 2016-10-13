@@ -2,20 +2,29 @@ import * as React from 'react';
 import { Provider } from 'react-redux'
 
 import { store } from '../data/store';
-import { ControlsContainer } from './ControlsContainer';
+
+import { TargetFormContainer } from './TargetFormContainer';
 
 // This React component represents the whole application
 export class App extends React.Component<{}, {}> {
 
+    handleSubmit(event) {
+        event.preventDefault();
+        console.log(event)
+//        console.debug();
+    }
+    
     public render() {
         return (<Provider store={store}>
-            <div className="container">
-                <header>
-                    <h1>Application</h1>
-                </header>
+            <div>
+                <div className="panel-heading">    
+                    <h3 className="panel-title">Atom feed reader</h3>
+                </div>
 
-                <ControlsContainer />
-                Content comes here.
+                <div className="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+                    <TargetFormContainer />
+                </div>
+                
 
             </div>
         </Provider>);

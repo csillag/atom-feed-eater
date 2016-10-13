@@ -1,3 +1,12 @@
+
+export interface Article {
+    title: string;
+}
+
 export interface AppState {
-    value:number;
+    url:string;
+    urlErrorMessage:string;    
+    fetching: boolean;
+    title: string;
+    articles: Article[];    
 }
