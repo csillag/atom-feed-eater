@@ -1,7 +1,6 @@
 // The file containes Redux reducer function
 import { AppState } from './State';
-import { Action, EDIT_URL, SUBMIT_URL, LOAD, LOAD_FAIL, LOAD_SUCCESS } from './actions';
-import { isResultValid } from '../logic/proxy';
+import { Action, EDIT_URL, SUBMIT_URL, LOAD, LOAD_FAIL, LOAD_SUCCESS, PARSE_ERROR, FEED_PARSED } from './actions';
 
 export function getNextState(state:AppState, action:Action):AppState {
     if (!state) {
@@ -10,8 +9,8 @@ export function getNextState(state:AppState, action:Action):AppState {
             urlErrorMessage: "",
             shouldFetch: false,
             fetching: false,
-            title: null,
-            articles: [],
+            incomingResponse: null,
+            feed: null,
         };
         return result;
     }
@@ -37,19 +36,20 @@ export function getNextState(state:AppState, action:Action):AppState {
             urlErrorMessage: action.error.message || action.error.data,
         });
     case LOAD_SUCCESS:
-        const xml = action.payload.data;
-        if (isResultValid(xml)) {
-            console.log("We loaded something!", xml);
-            // TODO: populate articles
-            return Object.assign({}, state, {
-                fetching: false,
-            });
-        } else {
-            return Object.assign({}, state, {
-                fetching: false,
-                urlErrorMessage: "We couldn't load anything from that URL.",
-            });
-        }
+        return Object.assign({}, state, {
+            fetching: false,
+            incomingResponse: action.payload.data,
+        });
+    case PARSE_ERROR:
+        return Object.assign({}, state, {
+            incomingResponse: null,
+            urlErrorMessage: action.error,
+        });
+    case FEED_PARSED:
+        return Object.assign({}, state, {
+            incomingResponse: null,
+            feed: action.results,
+        });
     default:
         return state;
     }    

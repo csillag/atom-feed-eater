@@ -18,6 +18,13 @@ export const proxyMiddleware = axiosMiddleware(axios.create({
     responseType: 'text'
 }));
 
-export function isResultValid(text:string) {
-    return text.indexOf("<results/>") === -1
+// This function attempts to extract the real result from inside the proxy's response
+export function extractResult(response:string) {
+    const resultsPos = response.indexOf("<results>");
+    if (resultsPos === -1) {
+        return null;
+    }
+    const startIndex = resultsPos + '<results>'.length;
+    const endIndex = response.lastIndexOf('</results>');
+    return response.substring(startIndex, endIndex);
 }

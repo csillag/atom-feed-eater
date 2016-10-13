@@ -8,6 +8,8 @@ export const SUBMIT_URL = "SUBMIT_URL";
 export const LOAD = "LOAD";
 export const LOAD_FAIL = "LOAD_FAIL";
 export const LOAD_SUCCESS = "LOAD_SUCCESS";
+export const PARSE_ERROR = "PARSE_ERROR";
+export const FEED_PARSED = "FEED_PARSED";
 
 // Generic type to describe all actions
 export interface Action {
@@ -15,6 +17,7 @@ export interface Action {
     url?: string;
     payload?: any;
     error?: any;
+    results?: any;
 }
 
 // === Action generator functions ===
@@ -36,4 +39,12 @@ export function load(url:string):Action {
             }
         }
     }
+}
+
+export function parseError(error:string):Action {
+    return { type: PARSE_ERROR, error }
+}
+
+export function feedParsed(results:any):Action {
+    return { type: FEED_PARSED, results }
 }

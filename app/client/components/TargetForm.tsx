@@ -68,7 +68,7 @@ export class TargetForm extends React.Component<TargetFormProps, {}> {
                 </div>
             </div>
             { hasError && <div className="row alert alert-danger">
-                Error: {this.props.errorMessage}
+                {this.props.errorMessage}
             </div>}
         </div>)
     }

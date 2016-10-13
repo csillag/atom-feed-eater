@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import { store } from '../data/store';
 
 import { TargetFormContainer } from './TargetFormContainer';
+import { AtomFeedContainer } from './AtomFeedContainer';
 
 // This React component represents the whole application
 export class App extends React.Component<{}, {}> {
@@ -23,6 +24,7 @@ export class App extends React.Component<{}, {}> {
 
                 <div className="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
                     <TargetFormContainer />
+                    <AtomFeedContainer />
                 </div>
                 
 
