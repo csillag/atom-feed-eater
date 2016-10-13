@@ -7,20 +7,21 @@
 import { connect } from 'react-redux'
 
 import { AppState } from '../data/state';
-import { editUrl, tryUrl} from '../data/actions';
+import { editUrl, submitUrl} from '../data/actions';
 import { TargetForm, TargetFormProps } from './TargetForm';
 
 function mapStateToProps(state:AppState):TargetFormProps {
     return {
         url: state.url,
+        fetching: state.fetching,
         errorMessage: state.urlErrorMessage,
     }
 }
 
-function mapDispatchToProps(dispatch):TargetFormProps {
+function mapDispatchToProps(dispatch, foo, bar):TargetFormProps {
     return {
         edit: (url:string) => { dispatch(editUrl(url)) },
-        submit: () => { dispatch(tryUrl()) }
+        submit: () => { dispatch(submitUrl()) }
     }
 }
 

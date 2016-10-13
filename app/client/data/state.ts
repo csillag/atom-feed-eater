@@ -5,7 +5,8 @@ export interface Article {
 
 export interface AppState {
     url:string;
-    urlErrorMessage:string;    
+    urlErrorMessage:string;
+    shouldFetch: boolean;
     fetching: boolean;
     title: string;
     articles: Article[];    

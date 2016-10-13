@@ -4,6 +4,7 @@ import * as classNames from 'classnames';
 
 export interface TargetFormProps {
     url?: string;
+    fetching?: boolean;
     errorMessage?: string;
     edit?(url:string):void;
     submit?():void;
@@ -13,6 +14,7 @@ export class TargetForm extends React.Component<TargetFormProps, {}> {
 
     static propTypes: React.ValidationMap<TargetFormProps> = {
         url: React.PropTypes.string.isRequired,
+        fetching: React.PropTypes.bool.isRequired,
         message: React.PropTypes.string,
         edit: React.PropTypes.func.isRequired,
         submit: React.PropTypes.func.isRequired,        
@@ -31,6 +33,7 @@ export class TargetForm extends React.Component<TargetFormProps, {}> {
     }
 
     render() {
+        const fetching = this.props.fetching;
         const hasError = this.props.errorMessage != "";
         const urlGroupClasses = classNames({
             "input-group": true,
@@ -48,8 +51,13 @@ export class TargetForm extends React.Component<TargetFormProps, {}> {
                         onChange={this.onEdit.bind(this)}
                         onKeyUp={this.onKeyUp.bind(this)}
                     />
+                    { fetching && <span className="input-group-addon">
+                        <span className="glyphicon glyphicon-repeat fast-right-spinner"></span>
+                        &nbsp;Loading...
+                    </span>}
                     <span className="input-group-btn">
-                        <button
+                       <button
+                            disabled={fetching}
                             type="submit"                
                             className="btn btn-primary"
                             onClick={this.onSubmit.bind(this)}
