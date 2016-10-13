@@ -2,7 +2,7 @@
 // state changes by dispatching new actions.
 
 import { store } from '../data/store';
-import { load, parseError, feedParsed } from '../data/actions';
+import { load, parsingStarted, parseError, feedParsed } from '../data/actions';
 import { extractResult } from '../logic/proxy';
 import { parseAtomFeed } from '../logic/atom';
 
@@ -14,6 +14,7 @@ store.subscribe(() => {
         store.dispatch(load(state.url));
     } else if (state.incomingResponse) {
         // We have an incoming proxy response. We should parse it.
+        store.dispatch(parsingStarted());
         const result = extractResult(state.incomingResponse); // Extract the feed from the proxy response
         if (result) {
             try {

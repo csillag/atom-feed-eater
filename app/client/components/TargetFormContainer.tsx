@@ -14,6 +14,7 @@ function mapStateToProps(state:AppState):TargetFormProps {
     return {
         url: state.url,
         fetching: state.fetching,
+        parsing: state.parsing,
         errorMessage: state.urlErrorMessage,
     }
 }

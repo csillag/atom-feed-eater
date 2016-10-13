@@ -1,5 +1,5 @@
 
-import { AtomFeed } from '../logic/atom';
+import { AtomFeedInfo } from '../logic/atom';
 
 export interface AppState {
     url:string;
@@ -7,5 +7,6 @@ export interface AppState {
     shouldFetch: boolean;
     fetching: boolean;
     incomingResponse: string;
-    feed: AtomFeed;
+    parsing: boolean;
+    feed: AtomFeedInfo;
 }

@@ -2,20 +2,34 @@ import * as React from 'react';
 import { Component } from 'react';
 import * as classNames from 'classnames';
 
+import { Article, AtomFeedInfo } from '../logic/atom';
+
 export interface AtomFeedProps {
     feed: any;
 }
 
 export class AtomFeed extends React.Component<AtomFeedProps, {}> {
 
+    private renderSiteInfo(site:Article) {
+        return (<div>
+            <h3>{site.title}</h3>
+        </div>)
+    }
+
+    private renderItems(items:Article[]) {
+        return (<div>
+            The articles come here.
+        </div>)
+    }
+
     render() {
-        const feed = this.props.feed;
+        const feed:AtomFeedInfo = this.props.feed;
         if (!feed) {
             return null;
         }
-        console.log("Rendering atom feed", feed);
         return (<div>
-                The feed comes here
+                { this.renderSiteInfo(feed.site) }
+                { this.renderItems(feed.items) }
         </div>)
     }
 }

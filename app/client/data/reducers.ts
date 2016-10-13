@@ -1,6 +1,10 @@
 // The file containes Redux reducer function
 import { AppState } from './State';
-import { Action, EDIT_URL, SUBMIT_URL, LOAD, LOAD_FAIL, LOAD_SUCCESS, PARSE_ERROR, FEED_PARSED } from './actions';
+import { Action,
+         EDIT_URL, SUBMIT_URL,
+         LOAD, LOAD_FAIL, LOAD_SUCCESS,
+         PARSING_STARTED, PARSE_ERROR, FEED_PARSED
+} from './actions';
 
 export function getNextState(state:AppState, action:Action):AppState {
     if (!state) {
@@ -10,11 +14,12 @@ export function getNextState(state:AppState, action:Action):AppState {
             shouldFetch: false,
             fetching: false,
             incomingResponse: null,
+            parsing: false,
             feed: null,
         };
         return result;
     }
-    console.log("Action:", action);
+//    console.log("Action:", action);
     switch (action.type) {
     case EDIT_URL:
         return Object.assign({}, state, {
@@ -40,14 +45,19 @@ export function getNextState(state:AppState, action:Action):AppState {
             fetching: false,
             incomingResponse: action.payload.data,
         });
-    case PARSE_ERROR:
+    case PARSING_STARTED:
         return Object.assign({}, state, {
             incomingResponse: null,
+            parsing: true,
+        });
+    case PARSE_ERROR:
+        return Object.assign({}, state, {
+            parsing: false,
             urlErrorMessage: action.error,
         });
     case FEED_PARSED:
         return Object.assign({}, state, {
-            incomingResponse: null,
+            parsing: false,
             feed: action.results,
         });
     default:

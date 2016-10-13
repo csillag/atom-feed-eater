@@ -8,6 +8,7 @@ export const SUBMIT_URL = "SUBMIT_URL";
 export const LOAD = "LOAD";
 export const LOAD_FAIL = "LOAD_FAIL";
 export const LOAD_SUCCESS = "LOAD_SUCCESS";
+export const PARSING_STARTED = "PARSING_STARTED";
 export const PARSE_ERROR = "PARSE_ERROR";
 export const FEED_PARSED = "FEED_PARSED";
 
@@ -41,6 +42,9 @@ export function load(url:string):Action {
     }
 }
 
+export function parsingStarted():Action {
+    return { type: PARSING_STARTED }
+}
 export function parseError(error:string):Action {
     return { type: PARSE_ERROR, error }
 }

@@ -11,7 +11,7 @@ export interface Article {
     summary: string;
 }
 
-export interface AtomFeed {
+export interface AtomFeedInfo {
     site: Article;
     items: Article[];
 }
