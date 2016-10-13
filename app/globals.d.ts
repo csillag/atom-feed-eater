@@ -20,3 +20,7 @@ declare module 'meteor/session' {
         function setPersistent(key: string, value:any): void;
     }
 }
+
+declare module 'redux-axios-middleware' {
+    export default function foo(bar:any):any;
+}
