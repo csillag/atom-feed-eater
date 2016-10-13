@@ -3,6 +3,7 @@ import { Component } from 'react';
 import * as classNames from 'classnames';
 
 import { Article, AtomFeedInfo } from '../logic/atom';
+import { FeedItem } from './FeedItem';
 
 export interface FeedDisplayerProps {
     feed: AtomFeedInfo;
@@ -12,14 +13,15 @@ export class FeedDisplayer extends React.Component<FeedDisplayerProps, {}> {
 
     private renderSiteInfo(site:Article) {
         return (<div>
-            <h3>{site.title}</h3>
+                <a target="_blank" href={site.link}><h3>{site.title}</h3></a>
         </div>)
     }
 
     private renderItems(items:Article[]) {
-        return (<div>
-            The articles come here.
-        </div>)
+        return items.map((item:Article) => {
+            const key = item.date + item.link;
+            return <FeedItem key={key} item={item} />
+        });
     }
 
     render() {

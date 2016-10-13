@@ -28,3 +28,23 @@
         transform: rotate(359deg);
     }
 }
+
+.atom-article {
+    border: 1px solid black;
+    margin-bottom: 1em;
+}
+
+.atom-title {
+    background-color: #d8d8c4;
+    width: 100%;
+}
+
+.atom-content {
+    padding: 1em;
+}
+
+.atom-title a {
+    color: black;
+    font-size: 150%;
+    padding: 0.25em;
+}
