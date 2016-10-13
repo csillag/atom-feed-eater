@@ -15,7 +15,7 @@ export function getInitialState():AppState {
 export function getNextState(state:AppState, action:Action) {
     //    console.log("Executing action", action);
     let next:AppState;
-    
+
     switch (action.type) {
     case DO_SOMETHING:
         next = Object.assign({}, state, {
