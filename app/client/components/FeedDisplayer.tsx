@@ -4,11 +4,11 @@ import * as classNames from 'classnames';
 
 import { Article, AtomFeedInfo } from '../logic/atom';
 
-export interface AtomFeedProps {
-    feed: any;
+export interface FeedDisplayerProps {
+    feed: AtomFeedInfo;
 }
 
-export class AtomFeed extends React.Component<AtomFeedProps, {}> {
+export class FeedDisplayer extends React.Component<FeedDisplayerProps, {}> {
 
     private renderSiteInfo(site:Article) {
         return (<div>

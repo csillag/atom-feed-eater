@@ -7,12 +7,12 @@
 import { connect } from 'react-redux'
 
 import { AppState } from '../data/state';
-import { AtomFeed, AtomFeedProps } from './AtomFeed';
+import { FeedDisplayer, FeedDisplayerProps } from './FeedDisplayer';
 
-function mapStateToProps(state:AppState):AtomFeedProps {
+function mapStateToProps(state:AppState):FeedDisplayerProps {
     return {
         feed: state.feed
     }
 }
 
-export const AtomFeedContainer = connect(mapStateToProps)(AtomFeed);
+export const FeedDisplayerContainer = connect(mapStateToProps)(FeedDisplayer);
