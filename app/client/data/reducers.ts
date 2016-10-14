@@ -9,7 +9,7 @@ import { Action,
 export function getNextState(state:AppState, action:Action):AppState {
     if (!state) {
         const result:AppState = {
-            url: 'http://github.com/csillag.atom',
+            url: "",
             urlErrorMessage: "",
             shouldFetch: false,
             fetching: false,
