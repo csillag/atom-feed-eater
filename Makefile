@@ -9,5 +9,5 @@ dev: prepare
 build:
 	@cd app; meteor-build-client ../docs -p ""
 	@touch docs/.nojekyll
-	@echo "This directory hosts the statically built demo. See here: <insert URL here>" > docs/readme.md
+	@echo "This directory hosts the statically built demo. See here: http://csillag.github.io/atom-feed-eater" > docs/readme.md
 
