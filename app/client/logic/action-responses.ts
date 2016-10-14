@@ -2,7 +2,7 @@
 // state changes by dispatching new actions.
 
 import { store } from '../data/store';
-import { load, parsingStarted, parseError, feedParsed } from '../data/actions';
+import { editUrl, submitUrl, load, parsingStarted, parseError, feedParsed } from '../data/actions';
 import { extractResult } from '../logic/proxy';
 import { parseAtomFeed } from '../logic/atom';
 
@@ -33,3 +33,9 @@ store.subscribe(() => {
         }
     }
 })
+
+// For debugging, uncomment this
+setTimeout(() => {
+    store.dispatch(editUrl("http://blog.case.edu/news/feed.atom"))
+    store.dispatch(submitUrl())
+}, 1000);
