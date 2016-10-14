@@ -33,7 +33,8 @@ function enhanceFeed(feed:AtomFeedInfo, raw:any) {
     if (!feed.site.image) {
         feed.site.image = ((((((raw.feed || raw.rss).channel || [])[0] || {}).image || [])[0] || {}).url || [])[0];
     }
-    const entries = (raw.feed || {}).entry;
+    const entries = (raw.feed || {}).entry
+          || (((raw.rss || {}).channel || [])[0] || {}).item
     if (entries) {
         for (let i=0; i<feed.items.length; i++) {
             enhanceItem(feed.items[i], entries[i]);
