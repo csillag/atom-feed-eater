@@ -1,6 +1,10 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
 
+import { Spinner } from './Spinner';
+
+import styles from './TargetForm.css';
+
 export interface TargetFormProps {
     url?: string;
     fetching?: boolean;
@@ -20,7 +24,7 @@ export const TargetForm = (props:TargetFormProps) => {
             "has-error": hasError,
         });
         
-        return (<div id="atom-target-form">
+        return (<div className={styles.form}>
             <div className="row">
                 <div className={urlGroupClasses}>    
                     <input
@@ -39,7 +43,7 @@ export const TargetForm = (props:TargetFormProps) => {
                         } }
                     />
                     { busy && (<span className="input-group-addon">
-                        <span className="glyphicon glyphicon-repeat fast-right-spinner"></span>&nbsp;
+                        <Spinner />&nbsp;
                         { fetching && (<span>Loading...</span> ) }
                         { parsing && (<span>Parsing...</span> ) }
                     </span>)}

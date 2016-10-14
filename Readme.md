@@ -19,7 +19,8 @@ will be placed in the `docs` directory.
  - Languages: 95.8% [Typescript](https://www.typescriptlang.org/) + 2.7% [CoffeeScript](http://coffeescript.org/) + 1.5% ES6
  - Framework: [Meteor](https://www.meteor.com/)
  - UI framework: [React](https://facebook.github.io/react/)
- - CSS: [twbs:bootstrap](https://atmospherejs.com/twbs/bootstrap)
+ - Groundwork for styling: [twbs:bootstrap](https://atmospherejs.com/twbs/bootstrap)
+ - CSS modules system: [nathantreid:css-modules](https://atmospherejs.com/nathantreid/css-modules)
  - State management: [Redux](http://redux.js.org/)
  - URL validation: [valid-url](https://www.npmjs.com/package/valid-url)
  - Proxy services: [Yahoo Query Language](https://developer.yahoo.com/yql/)

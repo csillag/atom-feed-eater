@@ -1,0 +1,54 @@
+
+.site {
+    font-weight: bold;
+    border: 1px solid black;
+    box-shadow: 10px 10px 5px #888888;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.siteTitle {
+    background-color: orange;
+    border-bottom: 1px solid black;
+    width: 100%;
+}
+
+.articles {
+    padding-top: 1em;
+}
+
+.content {
+    padding: 1em;
+}
+
+.article {
+    border: 1px solid black;
+    box-shadow: 6px 6px 2px #888888;
+    margin-bottom: 1em;
+}
+
+.articleTitle {
+    background-color: #d8d8c4;
+    border-bottom: 1px solid black;
+    width: 100%;
+}
+
+.date,
+.author {
+    color: gray;
+}
+
+.summary,
+.description {
+    margin-top: 0.5em;
+}
+
+.thumbnail {
+    padding: 1em;
+}
+
+.titleLink {
+    color: black;
+    font-size: 150%;
+    padding: 0.25em;
+}

@@ -51,10 +51,13 @@ modules@0.7.6_1
 modules-runtime@0.7.6_1
 mongo@1.1.12_5
 mongo-id@1.0.5
+nathantreid:css-modules@2.2.2
+nathantreid:css-modules-import-path-helpers@0.1.4
 npm-mongo@2.2.10_1
 observe-sequence@1.0.13
 ordered-dict@1.0.8
 promise@0.8.7
+ramda:ramda@0.19.0
 random@1.0.10
 reactive-var@1.0.10
 reload@1.1.10
