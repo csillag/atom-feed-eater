@@ -40,6 +40,7 @@ export function getNextState(state:AppState, action:Action):AppState {
         return Object.assign({}, state, {
             shouldFetch: false,
             fetching: true,
+            feed: null,
         });
     case LOAD_FAIL:
         return Object.assign({}, state, {
