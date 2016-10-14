@@ -11,18 +11,22 @@ If you want to run in locally, you need to install [Meteor](http://meteor.com/),
 and then run `make dev`.
 
 Since this project is client-only, it can be deployed at any static hosting
-solution. For building it that way, it depends on the [meteor-build-client](https://github.com/frozeman/meteor-build-client) tool.
+solution. For building it that way, run `make build`. The resulting build
+will be placed in the `docs` directory.
 
 ### Components, libraries and technology used:
 
- - Language: [Typescript](https://www.typescriptlang.org/)
+ - Languages: 95.8% [Typescript](https://www.typescriptlang.org/) + 2.7% [CoffeeScript](http://coffeescript.org/) + 1.5% ES6
  - Framework: [Meteor](https://www.meteor.com/)
  - UI framework: [React](https://facebook.github.io/react/)
  - CSS: [twbs:bootstrap](https://atmospherejs.com/twbs/bootstrap)
  - State management: [Redux](http://redux.js.org/)
+ - URL validation: [valid-url](https://www.npmjs.com/package/valid-url)
  - Proxy services: [Yahoo Query Language](https://developer.yahoo.com/yql/)
  - Redux middleware for HTTP requests: [redux-axios-middleware](https://github.com/svrcekmichal/redux-axios-middleware)
  - Parsing ATOM feeds: [node-feedparser](https://www.npmjs.com/package/node-feedparser)
+ - xml2json transformation: [xml2js](https://www.npmjs.com/package/xml2js)
+ - Bundling the app for server-less static deployment: [meteor-bundle-client](https://www.npmjs.com/package/meteor-build-client)
 
 ### Known problems and limitations:
 
