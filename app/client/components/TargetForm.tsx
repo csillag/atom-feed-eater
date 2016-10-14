@@ -63,7 +63,7 @@ export class TargetForm extends React.Component<TargetFormProps, {}> {
                     </span>)}
                     <span className="input-group-btn">
                        <button
-                            disabled={fetching}
+                            disabled={busy}
                             type="submit"                
                             className="btn btn-primary"
                             onClick={this.onSubmit.bind(this)}
