@@ -10,6 +10,16 @@ export interface FeedItemProps {
 
 export class FeedItem extends React.Component<FeedItemProps, {}> {
 
+    private renderImage(url:string) {
+        if (!url) {
+            return null;
+        }
+        return (<div><img
+            className="atom-thumbnail"
+            src={url}
+        /></div>)
+    }
+
     private renderBody(item:Article) {
         if (item.description) {
             return (<div className="atom-description" dangerouslySetInnerHTML={{__html: item.description}} />);
@@ -29,6 +39,7 @@ export class FeedItem extends React.Component<FeedItemProps, {}> {
                 <span className="atom-author">{ item.author }</span>
                 <span>&nbsp;|&nbsp;</span>
                 <span className="atom-date">{ date }</span>
+                { this.renderImage(item.image) }
                 { this.renderBody(item) }
             </div>
         </div>);

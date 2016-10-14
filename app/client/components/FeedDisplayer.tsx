@@ -11,6 +11,16 @@ export interface FeedDisplayerProps {
 
 export class FeedDisplayer extends React.Component<FeedDisplayerProps, {}> {
 
+    private renderImage(url:string) {
+        if (!url) {
+            return null;
+        }
+        return (<div><img
+            className="atom-thumbnail"
+            src={url}
+        /></div>)
+    }
+
     private renderItems(items:Article[]) {
         return items.map((item:Article) => {
             const key = item.date + item.link;
@@ -32,6 +42,7 @@ export class FeedDisplayer extends React.Component<FeedDisplayerProps, {}> {
                         {site.title}
                     </a>
                 </div>
+                { this.renderImage(site.image) }
                 <div className="atom-content">
                     <span>Feed last updated:&nbsp;</span>
                     { site.author && <span className="atom-author">{ site.author }&nbsp;|&nbsp;</span> }

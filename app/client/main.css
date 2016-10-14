@@ -71,6 +71,10 @@
     padding: 0.25em;
 }
 
+.atom-thumbnail {
+    padding: 1em;
+}
+
 .atom-summary,
 .atom-description {
     margin-top: 0.5em;

@@ -23,17 +23,13 @@ store.subscribe(() => {
         store.dispatch(parsingStarted());
         const result = extractResult(state.incomingResponse); // Extract the feed from the proxy response
         if (result) {
-            try {
-                parseAtomFeed(result, (error, ret) => {
-                    if (error) {
-                        store.dispatch(parseError("While parsing the feed: " + error));
-                    } else {
-                        store.dispatch(feedParsed(ret));
-                    }
-                });
-            } catch (e) {
-                store.dispatch(parseError("While parsing the feed: " + e.toString()));
-            }
+            parseAtomFeed(result, (error, ret) => {
+                if (error) {
+                    store.dispatch(parseError("While parsing the feed: " + error));
+                } else {
+                    store.dispatch(feedParsed(ret));
+                }
+            });
         } else {
             store.dispatch(parseError("We couldn't load anything from that URL."));
         }
@@ -41,7 +37,9 @@ store.subscribe(() => {
 })
 
 // For debugging, uncomment this
+//const testFeed = "http://github.com/csillag.atom"
+//const testFeed = "http://feeds.feedburner.com/tomstocky"
 //setTimeout(() => {
-//    store.dispatch(editUrl("http://blog.case.edu/news/feed.atom"))
+//    store.dispatch(editUrl(testFeed))
 //    store.dispatch(submitUrl())
 //}, 1000);
