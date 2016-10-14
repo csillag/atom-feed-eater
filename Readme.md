@@ -1,5 +1,5 @@
 
-## App Skeleton
+## Atom Feed Eater
 
 This is a demo implementation of an Atom feed displayer.
 
