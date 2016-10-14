@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Component } from 'react';
 import * as classNames from 'classnames';
 
 export interface TargetFormProps {
@@ -11,34 +10,11 @@ export interface TargetFormProps {
     submit?():void;
 }
 
-export class TargetForm extends React.Component<TargetFormProps, {}> {
-
-    static propTypes: React.ValidationMap<TargetFormProps> = {
-        url: React.PropTypes.string.isRequired,
-        fetching: React.PropTypes.bool.isRequired,
-        parsing: React.PropTypes.bool.isRequired,
-        message: React.PropTypes.string,
-        edit: React.PropTypes.func.isRequired,
-        submit: React.PropTypes.func.isRequired,        
-    };
-
-    private onEdit(event) { this.props.edit(event.target.value); }
-
-    private onKeyUp(event) {
-        if (event.key == "Enter") {
-            this.props.submit();
-        }
-    }
-    
-    private onSubmit(event) {
-        this.props.submit();
-    }
-
-    render() {
-        const fetching = this.props.fetching;
-        const parsing = this.props.parsing;
+export const TargetForm = (props:TargetFormProps) => {
+        const fetching = props.fetching;
+        const parsing = props.parsing;
         const busy = fetching || parsing;
-        const hasError = this.props.errorMessage != "";
+        const hasError = props.errorMessage != "";
         const urlGroupClasses = classNames({
             "input-group": true,
             "has-error": hasError,
@@ -51,10 +27,16 @@ export class TargetForm extends React.Component<TargetFormProps, {}> {
                         type="url"
                         className="form-control"
                         id="url"
-                        value={this.props.url}
+                        value={props.url}
                         placeholder="Enter the URL of an ATOM feed!"
-                        onChange={this.onEdit.bind(this)}
-                        onKeyUp={this.onKeyUp.bind(this)}
+                        onChange={(event) => {
+                            props.edit((event.target as any).value)
+                        }}
+                        onKeyUp={(event) => {
+                            if (event.key == "Enter") {
+                                props.submit();
+                            }
+                        } }
                     />
                     { busy && (<span className="input-group-addon">
                         <span className="glyphicon glyphicon-repeat fast-right-spinner"></span>&nbsp;
@@ -66,7 +48,7 @@ export class TargetForm extends React.Component<TargetFormProps, {}> {
                             disabled={busy}
                             type="submit"                
                             className="btn btn-primary"
-                            onClick={this.onSubmit.bind(this)}
+                            onClick={ props.submit }
                         >
                             Go fetch!
                         </button>
@@ -74,8 +56,19 @@ export class TargetForm extends React.Component<TargetFormProps, {}> {
                 </div>
             </div>
             { hasError && <div className="row alert alert-danger">
-                {this.props.errorMessage}
+                {props.errorMessage}
             </div>}
-        </div>)
-    }
+        </div>);
 }
+
+// TODO: find out how to apply propTypes
+// to stateless function components in TS
+
+//TargetForm.propTypes = React.ValidationMap<TargetFormProps> = {
+//        "url": React.PropTypes.string.isRequired,
+//        "fetching": React.PropTypes.bool.isRequired,
+//        "parsing": React.PropTypes.bool.isRequired,
+//        "message": React.PropTypes.string,
+//        "edit": React.PropTypes.func.isRequired,
+//        "submit": React.PropTypes.func.isRequired,
+//};
