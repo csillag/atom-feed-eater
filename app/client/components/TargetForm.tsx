@@ -52,6 +52,7 @@ export class TargetForm extends React.Component<TargetFormProps, {}> {
                         className="form-control"
                         id="url"
                         value={this.props.url}
+                        placeholder="Enter the URL of an ATOM feed!"
                         onChange={this.onEdit.bind(this)}
                         onKeyUp={this.onKeyUp.bind(this)}
                     />
