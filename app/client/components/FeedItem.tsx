@@ -11,7 +11,7 @@ export interface FeedItemProps {
 export class FeedItem extends React.Component<FeedItemProps, {}> {
     render() {
         const item = this.props.item;
-        const date = item.date.toString();
+        const date = item.date.toLocaleString();
 //        console.log(item);
         return (<div className="atom-article">
             <div className="atom-title">

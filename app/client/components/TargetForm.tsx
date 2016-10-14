@@ -44,7 +44,7 @@ export class TargetForm extends React.Component<TargetFormProps, {}> {
             "has-error": hasError,
         });
         
-        return (<div>
+        return (<div id="atom-target-form">
             <div className="row">
                 <div className={urlGroupClasses}>    
                     <input

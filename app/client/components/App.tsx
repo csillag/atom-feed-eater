@@ -3,6 +3,7 @@ import { Provider } from 'react-redux'
 
 import { store } from '../data/store';
 
+import { GithubRibbon } from './GithubRibbon';
 import { TargetFormContainer } from './TargetFormContainer';
 import { FeedDisplayerContainer } from './FeedDisplayerContainer';
 
@@ -18,8 +19,9 @@ export class App extends React.Component<{}, {}> {
     public render() {
         return (<Provider store={store}>
             <div>
-                <div className="panel-heading">    
-                    <h3 className="panel-title">Atom feed reader</h3>
+                <GithubRibbon url="csillag/atom-feed-eater" />
+                <div className="panel-heading atom-title">
+                    <h3 className="panel-title">Csillag's Atom feed eater</h3>
                 </div>
 
                 <div className="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">

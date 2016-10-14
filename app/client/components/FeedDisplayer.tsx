@@ -12,8 +12,9 @@ export interface FeedDisplayerProps {
 export class FeedDisplayer extends React.Component<FeedDisplayerProps, {}> {
 
     private renderSiteInfo(site:Article) {
-        return (<div>
-                <a target="_blank" href={site.link}><h3>{site.title}</h3></a>
+        return (<div className="atom-site">
+                Displaying feed:&nbsp;
+                <a target="_blank" href={site.link}>{site.title}</a>
         </div>)
     }
 
