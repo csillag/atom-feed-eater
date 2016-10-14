@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import { Article, AtomFeedInfo } from '../logic/atom';
 
+import styles from './FeedDisplayer.css';
+
 export interface FeedDisplayerProps {
     feed: AtomFeedInfo;
 }
@@ -13,7 +15,7 @@ const renderImage = (url:string) => {
     return (
         <div>
             <img
-                className="atom-thumbnail"
+                className={styles.thumbnail}
                 src={url}
             />
         </div>
@@ -22,9 +24,9 @@ const renderImage = (url:string) => {
 
 const renderArticleBody = (item:Article) => {
     if (item.description) {
-        return (<div className="atom-description" dangerouslySetInnerHTML={{__html: item.description}} />);
+        return (<div className={styles.description} dangerouslySetInnerHTML={{__html: item.description}} />);
     } else {
-        return (<blockquote className="atom-summary">{ item.summary }</blockquote>);
+        return (<blockquote className={styles.summary}>{ item.summary }</blockquote>);
     }
 }
 
@@ -32,14 +34,14 @@ const renderArticle = (item:Article) => {
     const date = item.date.toLocaleString();
     const key = date + item.link;
 
-    return (<div key={key} className="atom-article">
-        <div className="atom-title">
-            <a target="_blank" href={item.link}>{ item.title }</a>
+    return (<div key={key} className={styles.article}>
+        <div className={styles.articleTitle}>
+            <a target="_blank" href={item.link} className={styles.titleLink}>{ item.title }</a>
         </div>
-        <div className="atom-content">
-            <span className="atom-author">{ item.author }</span>
+        <div className={styles.content}>
+            <span className={styles.author}>{ item.author }</span>
             <span>&nbsp;|&nbsp;</span>
-            <span className="atom-date">{ date }</span>
+            <span className={styles.date}>{ date }</span>
             { renderImage(item.image) }
             { renderArticleBody(item) }
         </div>
@@ -60,21 +62,21 @@ const renderFeed = (feed:AtomFeedInfo) => {
     const site = feed.site;
     const date = site.date.toLocaleString();
     return (
-            <div className="atom-site">
-                <div className="atom-title">
-                    <a target="_blank" href={site.link}>
+            <div className={styles.site}>
+                <div className={styles.siteTitle}>
+                    <a target="_blank" href={site.link} className={styles.titleLink}>
                         {site.title}
                     </a>
                 </div>
                 { renderImage(site.image) }
-                <div className="atom-content">
+                    <div className={styles.content}>
                     <span>Feed last updated:&nbsp;</span>
-                    { site.author && <span className="atom-author">{ site.author }&nbsp;|&nbsp;</span> }
-                    <span className="atom-date">{ date }</span>
-                    { site.description && <div className="atom-content">
+                    { site.author && <span className={styles.author}>{ site.author }&nbsp;|&nbsp;</span> }
+                    <span className={styles.date}>{ date }</span>
+                    { site.description && <div className={styles.content}>
                         { site.description }
                     </div> }
-                    <div id="atom-articles">
+                        <div className={styles.articles}>
                         { renderArticles(feed.items) }
                     </div>
                 </div>

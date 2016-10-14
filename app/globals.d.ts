@@ -24,3 +24,7 @@ declare module 'meteor/session' {
 declare module 'redux-axios-middleware' {
     export default function foo(bar:any):any;
 }
+
+interface StyleDict {
+    [id: string]: string;
+}
