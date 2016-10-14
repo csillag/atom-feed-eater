@@ -1,7 +1,7 @@
 // The file containes Redux reducer function
 import { AppState } from './State';
 import { Action,
-         EDIT_URL, SUBMIT_URL,
+         EDIT_URL, SUBMIT_URL, URL_ERROR,
          LOAD, LOAD_FAIL, LOAD_SUCCESS,
          PARSING_STARTED, PARSE_ERROR, FEED_PARSED
 } from './actions';
@@ -29,6 +29,11 @@ export function getNextState(state:AppState, action:Action):AppState {
     case SUBMIT_URL:
         return Object.assign({}, state, {
             shouldFetch: true,
+        });
+    case URL_ERROR:
+        return Object.assign({}, state, {
+            shouldFetch: false,
+            urlErrorMessage: action.error,
         });
     case LOAD:
         return Object.assign({}, state, {

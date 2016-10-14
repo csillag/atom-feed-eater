@@ -5,6 +5,7 @@ import { getURL } from '../logic/proxy';
 
 export const EDIT_URL = "EDIT_URL";
 export const SUBMIT_URL = "SUBMIT_URL";
+export const URL_ERROR = "URL_ERROR";
 export const LOAD = "LOAD";
 export const LOAD_FAIL = "LOAD_FAIL";
 export const LOAD_SUCCESS = "LOAD_SUCCESS";
@@ -31,6 +32,10 @@ export function submitUrl():Action {
     return { type: SUBMIT_URL }
 }
 
+export function urlError(error:string):Action {
+    return { type: URL_ERROR, error }
+}
+
 export function load(url:string):Action {
     return { type: LOAD, payload: { request: { url: getURL(url) } } }
 }
@@ -38,6 +43,7 @@ export function load(url:string):Action {
 export function parsingStarted():Action {
     return { type: PARSING_STARTED }
 }
+
 export function parseError(error:string):Action {
     return { type: PARSE_ERROR, error }
 }
