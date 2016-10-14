@@ -8,16 +8,8 @@ import { TargetFormContainer } from './TargetFormContainer';
 import { FeedDisplayerContainer } from './FeedDisplayerContainer';
 
 // This React component represents the whole application
-export class App extends React.Component<{}, {}> {
-
-    handleSubmit(event) {
-        event.preventDefault();
-        console.log(event)
-//        console.debug();
-    }
-    
-    public render() {
-        return (<Provider store={store}>
+export const App = () => (
+        <Provider store={store}>
             <div>
                 <GithubRibbon url="csillag/atom-feed-eater" />
                 <div className="panel-heading atom-title">
@@ -31,6 +23,5 @@ export class App extends React.Component<{}, {}> {
                 
 
             </div>
-        </Provider>);
-    }
-}
+        </Provider>
+)
