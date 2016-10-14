@@ -5,7 +5,7 @@ const validUrl = require('valid-url');
 
 import { store } from '../data/store';
 import { editUrl, submitUrl, urlError, load, parsingStarted, parseError, feedParsed } from '../data/actions';
-import { extractResult } from '../logic/proxy';
+import { extractDataFromProxyResponse } from '../logic/proxy';
 import { parseAtomFeed } from '../logic/atom';
 
 store.subscribe(() => {
@@ -21,7 +21,7 @@ store.subscribe(() => {
     } else if (state.shouldParse) {
         // We should parse the proxy response
         store.dispatch(parsingStarted());
-        const result = extractResult(state.incomingResponse); // Extract the feed from the proxy response
+        const result = extractDataFromProxyResponse(state.incomingResponse); // Extract the feed from the proxy response
         if (result) {
             parseAtomFeed(result, (error, ret) => {
                 if (error) {

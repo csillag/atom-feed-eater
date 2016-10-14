@@ -1,5 +1,5 @@
 
-import { getURL } from '../logic/proxy';
+import { getProxyRequestURL } from '../logic/proxy';
 
 // === Our store supports the following actions ===
 
@@ -37,7 +37,7 @@ export function urlError(error:string):Action {
 }
 
 export function load(url:string):Action {
-    return { type: LOAD, payload: { request: { url: getURL(url) } } }
+    return { type: LOAD, payload: { request: { url: getProxyRequestURL(url) } } }
 }
 
 export function parsingStarted():Action {

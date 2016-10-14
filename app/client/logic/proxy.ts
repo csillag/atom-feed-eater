@@ -7,7 +7,7 @@ import axiosMiddleware from 'redux-axios-middleware';
 // (This is the best way to get around CORS restrictions.)
 const baseURL = "https://query.yahooapis.com/v1/public";
 
-export function getURL(url:string) {
+export function getProxyRequestURL(url:string) {
     return "yql?q=" + encodeURIComponent("select * from xml where url = '"  + url + "'");
 }
 
@@ -19,7 +19,7 @@ export const proxyMiddleware = axiosMiddleware(axios.create({
 }));
 
 // This function attempts to extract the real result from inside the proxy's response
-export function extractResult(response:string) {
+export function extractDataFromProxyResponse(response:string) {
     const resultsPos = response.indexOf("<results>");
     if (resultsPos === -1) {
         return null;
