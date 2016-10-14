@@ -12,7 +12,7 @@ export class FeedItem extends React.Component<FeedItemProps, {}> {
 
     private renderBody(item:Article) {
         if (item.description) {
-            return (<div dangerouslySetInnerHTML={{__html: item.description}} />);
+            return (<div className="atom-description" dangerouslySetInnerHTML={{__html: item.description}} />);
         } else {
             return (<blockquote className="atom-summary">{ item.summary }</blockquote>);
         }

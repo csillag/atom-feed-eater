@@ -11,13 +11,6 @@ export interface FeedDisplayerProps {
 
 export class FeedDisplayer extends React.Component<FeedDisplayerProps, {}> {
 
-    private renderSiteInfo(site:Article) {
-        return (<div className="atom-site">
-                Displaying feed:&nbsp;
-                <a target="_blank" href={site.link}>{site.title}</a>
-        </div>)
-    }
-
     private renderItems(items:Article[]) {
         return items.map((item:Article) => {
             const key = item.date + item.link;
@@ -30,9 +23,27 @@ export class FeedDisplayer extends React.Component<FeedDisplayerProps, {}> {
         if (!feed) {
             return null;
         }
-        return (<div>
-                { this.renderSiteInfo(feed.site) }
-                { this.renderItems(feed.items) }
-        </div>)
+        const site = feed.site;
+        const date = site.date.toLocaleString();
+        return (
+            <div className="atom-site">
+                <div className="atom-title">
+                    <a target="_blank" href={site.link}>
+                        {site.title}
+                    </a>
+                </div>
+                <div className="atom-content">
+                    <span>Feed last updated:&nbsp;</span>
+                    { site.author && <span className="atom-author">{ site.author }&nbsp;|&nbsp;</span> }
+                    <span className="atom-date">{ date }</span>
+                    { site.description && <div className="atom-content">
+                        { site.description }
+                    </div> }
+                    <div id="atom-articles">
+                        { this.renderItems(feed.items) }
+                    </div>
+                </div>
+            </div>
+        )
     }
 }

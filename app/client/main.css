@@ -34,17 +34,20 @@
 }
 
 .atom-site {
-    font-size: 150%;
     font-weight: bold;
-    padding: 0.25em;
-    border: 1px solid green;
+    border: 1px solid black;
+    box-shadow: 10px 10px 5px #888888;
     margin-top: 1em;
     margin-bottom: 1em;
 }
 
+#atom-articles {
+    padding-top: 1em;
+}
+
 .atom-article {
     border: 1px solid black;
-    box-shadow: 10px 10px 5px #888888;
+    box-shadow: 6px 6px 2px #888888;
     margin-bottom: 1em;
 }
 
@@ -52,6 +55,10 @@
     background-color: #d8d8c4;
     border-bottom: 1px solid black;
     width: 100%;
+}
+
+.atom-site > .atom-title {
+    background-color: orange;
 }
 
 .atom-content {
@@ -64,8 +71,14 @@
     padding: 0.25em;
 }
 
-.atom-summary {
+.atom-summary,
+.atom-description {
     margin-top: 0.5em;
+}
+
+.atom-date,
+.atom-author {
+    color: gray;
 }
 
 img#github-ribbon {
