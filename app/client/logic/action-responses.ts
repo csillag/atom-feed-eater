@@ -18,8 +18,8 @@ store.subscribe(() => {
         } else { // No, URL is invalid
             store.dispatch(urlError("This doesn't seem to be a valid URL!"));
         }
-    } else if (state.incomingResponse) {
-        // We have an incoming proxy response. We should parse it.
+    } else if (state.shouldParse) {
+        // We should parse the proxy response
         store.dispatch(parsingStarted());
         const result = extractResult(state.incomingResponse); // Extract the feed from the proxy response
         if (result) {

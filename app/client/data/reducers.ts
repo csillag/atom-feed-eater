@@ -14,6 +14,7 @@ export function getNextState(state:AppState, action:Action):AppState {
             shouldFetch: false,
             fetching: false,
             incomingResponse: null,
+            shouldParse: false,
             parsing: false,
             feed: null,
         };
@@ -49,10 +50,11 @@ export function getNextState(state:AppState, action:Action):AppState {
         return Object.assign({}, state, {
             fetching: false,
             incomingResponse: action.payload.data,
+            shouldParse: true,
         });
     case PARSING_STARTED:
         return Object.assign({}, state, {
-            incomingResponse: null,
+            shouldParse: false,
             parsing: true,
         });
     case PARSE_ERROR:
