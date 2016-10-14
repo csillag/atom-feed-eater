@@ -35,7 +35,7 @@ store.subscribe(() => {
 })
 
 // For debugging, uncomment this
-setTimeout(() => {
-    store.dispatch(editUrl("http://blog.case.edu/news/feed.atom"))
-    store.dispatch(submitUrl())
-}, 1000);
+//setTimeout(() => {
+//    store.dispatch(editUrl("http://blog.case.edu/news/feed.atom"))
+//    store.dispatch(submitUrl())
+//}, 1000);
