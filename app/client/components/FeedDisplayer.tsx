@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { Component } from 'react';
-import * as classNames from 'classnames';
 
 import { Article, AtomFeedInfo } from '../logic/atom';
 import { FeedItem } from './FeedItem';
@@ -9,9 +7,7 @@ export interface FeedDisplayerProps {
     feed: AtomFeedInfo;
 }
 
-export class FeedDisplayer extends React.Component<FeedDisplayerProps, {}> {
-
-    private renderImage(url:string) {
+const renderImage = (url:string) => {
         if (!url) {
             return null;
         }
@@ -19,9 +15,9 @@ export class FeedDisplayer extends React.Component<FeedDisplayerProps, {}> {
             className="atom-thumbnail"
             src={url}
         /></div>)
-    }
+}
 
-    private renderItems(items:Article[]) {
+const renderItems = (items:Article[]) => {
         if (items.length == 0) {
             return (<span>No articles found.</span>) as any;
         }
@@ -29,10 +25,10 @@ export class FeedDisplayer extends React.Component<FeedDisplayerProps, {}> {
             const key = item.date + item.link;
             return <FeedItem key={key} item={item} />
         }) as any;
-    }
+}
 
-    render() {
-        const feed:AtomFeedInfo = this.props.feed;
+export const FeedDisplayer = (props:FeedDisplayerProps) => {
+        const feed  = props.feed;
         if (!feed) {
             return null;
         }
@@ -45,7 +41,7 @@ export class FeedDisplayer extends React.Component<FeedDisplayerProps, {}> {
                         {site.title}
                     </a>
                 </div>
-                { this.renderImage(site.image) }
+                { renderImage(site.image) }
                 <div className="atom-content">
                     <span>Feed last updated:&nbsp;</span>
                     { site.author && <span className="atom-author">{ site.author }&nbsp;|&nbsp;</span> }
@@ -54,10 +50,9 @@ export class FeedDisplayer extends React.Component<FeedDisplayerProps, {}> {
                         { site.description }
                     </div> }
                     <div id="atom-articles">
-                        { this.renderItems(feed.items) }
+                        { renderItems(feed.items) }
                     </div>
                 </div>
             </div>
         )
-    }
 }
