@@ -22,10 +22,13 @@ export class FeedDisplayer extends React.Component<FeedDisplayerProps, {}> {
     }
 
     private renderItems(items:Article[]) {
+        if (items.length == 0) {
+            return (<span>No articles found.</span>) as any;
+        }
         return items.map((item:Article) => {
             const key = item.date + item.link;
             return <FeedItem key={key} item={item} />
-        });
+        }) as any;
     }
 
     render() {
