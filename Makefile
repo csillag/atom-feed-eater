@@ -6,8 +6,8 @@ prepare:
 dev: prepare
 	@cd app; $(FIXLANG) meteor
 
-build:
-	@cd app; meteor-build-client ../docs -p ""
+build: prepare
+	@cd app; ./node_modules/.bin/meteor-build-client ../docs -p ""
 	@touch docs/.nojekyll
 	@echo "This directory hosts the statically built demo. See here: http://csillag.github.io/atom-feed-eater" > docs/readme.md
 
