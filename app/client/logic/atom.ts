@@ -3,7 +3,7 @@
 const parseAtomFeedWithFeedParser = require('node-feedparser');
 const xml2js = require('xml2js').parseString;
 
-import { enrichFeed } from './atom_enrichment';
+const enrichFeed = require('./atom-enrichment');
 
 export interface Article {
     author?: string;
@@ -46,4 +46,3 @@ export function parseAtomFeed(input:string, callback:(error,ret)=>void) {
         callback(e.toString(), null);
     }
 };
-
