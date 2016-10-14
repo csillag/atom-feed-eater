@@ -9,10 +9,18 @@ export interface FeedItemProps {
 }
 
 export class FeedItem extends React.Component<FeedItemProps, {}> {
+
+    private renderBody(item:Article) {
+        if (item.description) {
+            return (<div dangerouslySetInnerHTML={{__html: item.description}} />);
+        } else {
+            return (<blockquote className="atom-summary">{ item.summary }</blockquote>);
+        }
+    }
+
     render() {
         const item = this.props.item;
         const date = item.date.toLocaleString();
-//        console.log(item);
         return (<div className="atom-article">
             <div className="atom-title">
                 <a target="_blank" href={item.link}>{ item.title }</a>
@@ -21,7 +29,7 @@ export class FeedItem extends React.Component<FeedItemProps, {}> {
                 <span className="atom-author">{ item.author }</span>
                 <span>&nbsp;|&nbsp;</span>
                 <span className="atom-date">{ date }</span>
-                <blockquote className="atom-summary">{ item.summary }</blockquote>
+                { this.renderBody(item) }
             </div>
         </div>);
     }
