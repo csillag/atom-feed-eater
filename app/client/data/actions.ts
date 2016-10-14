@@ -32,14 +32,7 @@ export function submitUrl():Action {
 }
 
 export function load(url:string):Action {
-    return {
-        type: LOAD,
-        payload: {
-            request: {
-                url: getURL(url)
-            }
-        }
-    }
+    return { type: LOAD, payload: { request: { url: getURL(url) } } }
 }
 
 export function parsingStarted():Action {
