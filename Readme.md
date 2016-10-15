@@ -35,3 +35,6 @@ will be placed in the `docs` directory.
    (They should be prefixed with the original domain, but currently the
    content of the articles is simply outputted as raw HTML, without
    processing.)
+ - Now automatic testing has been implemented yet.
+ - It would be nice to come up with an automatic way for generating
+   the wrapper objects around the immutable maps...
