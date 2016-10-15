@@ -21,7 +21,7 @@ will be placed in the `docs` directory.
  - UI framework: [React](https://facebook.github.io/react/)
  - Groundwork for styling: [twbs:bootstrap](https://atmospherejs.com/twbs/bootstrap)
  - CSS modules system: [nathantreid:css-modules](https://atmospherejs.com/nathantreid/css-modules)
- - State management: [Redux](http://redux.js.org/)
+ - State management: [Redux](http://redux.js.org/) with [Immutable](http://facebook.github.io/immutable-js/)
  - URL validation: [valid-url](https://www.npmjs.com/package/valid-url)
  - Proxy services: [Yahoo Query Language](https://developer.yahoo.com/yql/)
  - Redux middleware for HTTP requests: [redux-axios-middleware](https://github.com/svrcekmichal/redux-axios-middleware)

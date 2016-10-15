@@ -1,11 +1,12 @@
 import * as React from 'react';
+import { List } from 'immutable';
 
-import { Article, AtomFeedInfo } from '../logic/atom';
+import { Article, FeedInfo } from '../logic/atom';
 
 import styles from './FeedDisplayer.css';
 
 export interface FeedDisplayerProps {
-    feed: AtomFeedInfo;
+    feed: FeedInfo;
 }
 
 const renderImage = (url:string) => {
@@ -23,64 +24,70 @@ const renderImage = (url:string) => {
 }
 
 const renderArticleBody = (item:Article) => {
-    if (item.description) {
-        return (<div className={styles.description} dangerouslySetInnerHTML={{__html: item.description}} />);
+    if (item.getDescription()) {
+        return (<div className={styles.description} dangerouslySetInnerHTML={{__html: item.getDescription()}} />);
     } else {
-        return (<blockquote className={styles.summary}>{ item.summary }</blockquote>);
+        return (<blockquote className={styles.summary}>{ item.getSummary() }</blockquote>);
     }
 }
 
 const renderArticle = (item:Article) => {
-    const date = item.date.toLocaleString();
-    const key = date + item.link;
+    const date = item.getDate().toLocaleString();
+    const key = date + item.getLink();
 
     return (<div key={key} className={styles.article}>
         <div className={styles.articleTitle}>
-            <a target="_blank" href={item.link} className={styles.titleLink}>{ item.title }</a>
+            <a target="_blank" href={item.getLink()} className={styles.titleLink}>{ item.getTitle() }</a>
         </div>
         <div className={styles.content}>
-            <span className={styles.author}>{ item.author }</span>
+            <span className={styles.author}>{ item.getAuthor() }</span>
             <span>&nbsp;|&nbsp;</span>
             <span className={styles.date}>{ date }</span>
-            { renderImage(item.image) }
+            { renderImage(item.getImage()) }
             { renderArticleBody(item) }
         </div>
     </div>);
 }
 
-const renderArticles = (items:Article[]) => {
-    if (items.length == 0) {
+const renderArticles = (items:List<Article>) => {
+    if (items.size == 0) {
         return (<span>No articles found.</span>) as any;
     }
     return items.map(renderArticle);
 }
 
-const renderFeed = (feed:AtomFeedInfo) => {
+const renderFeed = (feed:FeedInfo) => {
     if (!feed) {
         return null;
     }
-    const site = feed.site;
-    const date = site.date.toLocaleString();
+    const site = feed.getSite();
+    const date = site.getDate().toLocaleString();
     return (
-            <div className={styles.site}>
-                <div className={styles.siteTitle}>
-                    <a target="_blank" href={site.link} className={styles.titleLink}>
-                        {site.title}
-                    </a>
-                </div>
-                { renderImage(site.image) }
-                    <div className={styles.content}>
-                    <span>Feed last updated:&nbsp;</span>
-                    { site.author && <span className={styles.author}>{ site.author }&nbsp;|&nbsp;</span> }
-                    <span className={styles.date}>{ date }</span>
-                    { site.description && <div className={styles.content}>
-                        { site.description }
-                    </div> }
-                        <div className={styles.articles}>
-                        { renderArticles(feed.items) }
-                    </div>
+        <div className={styles.site}>
+            <div className={styles.siteTitle}>
+                <a target="_blank" href={site.getLink()} className={styles.titleLink}>
+                    { site.getTitle() }
+                </a>
+            </div>
+            { renderImage(site.getImage()) }
+            <div className={styles.content}>
+                <span>
+                    Feed last updated:&nbsp;
+                </span>
+                { site.getAuthor() && <span className={styles.author}>
+                    { site.getAuthor() }&nbsp;|&nbsp;
+                </span> }
+                <span className={styles.date}>
+                    { date }
+                </span>
+                { site.getDescription() && <div className={styles.content}>
+                    { site.getDescription() }
+                </div> }
+                <div className={styles.articles}>
+                    { renderArticles(feed.getItems()) }
                 </div>
             </div>
+        </div>
     )
 }
 

@@ -1,78 +1,74 @@
 // The file containes Redux reducer function
-import { PartialAppState, AppState } from './State';
+
+import { AppStateChange, AppState } from './state';
+import { AppStateWrapper } from '../logic/wrappers';
 import { Action,
          EDIT_URL, SUBMIT_URL, URL_ERROR,
          LOAD, LOAD_FAIL, LOAD_SUCCESS,
          PARSING_STARTED, PARSE_ERROR, FEED_PARSED
-} from './actions';
-
-// Helper funcion for generating the next state, by applying a set of
-// changes to the current state.
-function applyChanges(state:AppState, changes:PartialAppState):AppState {
-    return Object.assign({}, state, changes);
-}
+       } from './actions';
 
 // This is the reducer function
 export function getNextState(state:AppState, action:Action):AppState {
     if (!state) {
-        const result:AppState = {
+        const result:AppState = new AppStateWrapper().mutate({
             url: "",
             urlErrorMessage: "",
-            shouldFetch: false,
-            fetching: false,
+            shouldLoad: false,
+            isLoading: false,
             incomingResponse: null,
-            shouldParse: false,
-            parsing: false,
+            shouldProcess: false,
+            isProcessing: false,
             feed: null,
-        };
+        });
         return result;
     }
 //    console.log("Action:", action);
     switch (action.type) {
     case EDIT_URL:
-        return applyChanges(state, {
+        return state.mutate({
             url: action.url,
             urlErrorMessage: "",
         });
     case SUBMIT_URL:
-        return applyChanges(state, {
-            shouldFetch: true,
+        return state.mutate({
+            shouldLoad: true,
         });
     case URL_ERROR:
-        return applyChanges(state, {
-            shouldFetch: false,
+        return state.mutate({
+            shouldLoad: false,
             urlErrorMessage: action.error,
         });
     case LOAD:
-        return applyChanges(state, {
-            shouldFetch: false,
-            fetching: true,
+        return state.mutate({
+            shouldLoad: false,
+            isLoading: true,
             feed: null,
         });
     case LOAD_FAIL:
-        return applyChanges(state, {
-            fetching: false,
+        return state.mutate({
+            isLoading: false,
             urlErrorMessage: action.error.message || action.error.data,
         });
     case LOAD_SUCCESS:
-        return applyChanges(state, {
-            fetching: false,
+        return state.mutate({
+            isLoading: false,
             incomingResponse: action.payload.data,
-            shouldParse: true,
+            shouldProcess: true,
         });
     case PARSING_STARTED:
-        return applyChanges(state, {
-            shouldParse: false,
-            parsing: true,
+        return state.mutate({
+            shouldProcess: false,
+            isProcessing: true,
         });
     case PARSE_ERROR:
-        return applyChanges(state, {
-            parsing: false,
+        return state.mutate({
+            isProcessing: false,
             urlErrorMessage: action.error,
         });
     case FEED_PARSED:
-        return applyChanges(state, {
-            parsing: false,
+        return state.mutate({
+            isProcessing: false,
             feed: action.results,
         });
     default:
