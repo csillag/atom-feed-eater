@@ -43,7 +43,7 @@ export const TargetForm = (props:TargetFormProps) => {
                         } }
                     />
                     { busy && (<span className="input-group-addon">
-                        <Spinner />&nbsp;
+                        <Spinner />
                         { fetching && (<span>Loading...</span> ) }
                         { parsing && (<span>Parsing...</span> ) }
                     </span>)}

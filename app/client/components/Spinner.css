@@ -2,6 +2,7 @@
 .fast-right-spinner {
     -webkit-animation: glyphicon-spin-r 1s infinite linear;
     animation: glyphicon-spin-r 1s infinite linear;
+    margin-right: 1em;
 }
 
 @-webkit-keyframes glyphicon-spin-r {

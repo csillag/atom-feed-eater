@@ -41,7 +41,7 @@ const renderArticle = (item:Article) => {
         </div>
         <div className={styles.content}>
             <span className={styles.author}>{ item.getAuthor() }</span>
-            <span>&nbsp;|&nbsp;</span>
+            <span>|</span>
             <span className={styles.date}>{ date }</span>
             { renderImage(item.getImage()) }
             { renderArticleBody(item) }
@@ -72,10 +72,10 @@ const renderFeed = (feed:FeedInfo) => {
             { renderImage(site.getImage()) }
             <div className={styles.content}>
                 <span>
-                    Feed last updated:&nbsp;
+                    Feed last updated:
                 </span>
                 { site.getAuthor() && <span className={styles.author}>
-                    { site.getAuthor() }&nbsp;|&nbsp;
+                    { site.getAuthor() }|
                 </span> }
                 <span className={styles.date}>
                     { date }
