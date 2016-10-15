@@ -1,7 +1,7 @@
 // The file containes Redux reducer function
 
 import { AppStateChange, AppState } from './state';
-import { AppStateWrapper } from '../logic/wrappers';
+import { wrapRawAppState } from '../logic/wrappers';
 import { Action,
          EDIT_URL, SUBMIT_URL, URL_ERROR,
          LOAD, LOAD_FAIL, LOAD_SUCCESS,
@@ -11,7 +11,7 @@ import { Action,
 // This is the reducer function
 export function getNextState(state:AppState, action:Action):AppState {
     if (!state) {
-        const result:AppState = new AppStateWrapper().mutate({
+        const result:AppState = wrapRawAppState({
             url: "",
             urlErrorMessage: "",
             shouldLoad: false,

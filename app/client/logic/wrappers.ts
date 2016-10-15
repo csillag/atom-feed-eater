@@ -7,7 +7,7 @@ import { List, Map } from 'immutable';
 import { AppState, AppStateChange } from '../data/state';
 import { Article, FeedInfo } from './atom';
 
-export class ArticleWrapper implements Article {
+class ArticleWrapper implements Article {
 
     private state:Map<string,any> = null;
 
@@ -24,7 +24,11 @@ export class ArticleWrapper implements Article {
     public getImage() { return this.state.get("image"); }
 }
 
-export class FeedWrapper implements FeedInfo {
+function wrapRawArticle(rawArticle):Article {
+    return new ArticleWrapper(rawArticle);
+}
+
+class FeedInfoWrapper implements FeedInfo {
 
     private state:Map<string,any> = null;
 
@@ -33,9 +37,7 @@ export class FeedWrapper implements FeedInfo {
     constructor(data:any) {
         this.state = Map<string,any>({
             site: new ArticleWrapper(data.site),
-            items: data.items.map((itemData)=>{
-                return new ArticleWrapper(itemData)
-            })
+            items: data.items.map(wrapRawArticle),
         });
     }
 
@@ -43,7 +45,11 @@ export class FeedWrapper implements FeedInfo {
     public getItems() { return this.state.get("items"); }
 }
 
-export class AppStateWrapper implements AppState {
+export function wrapRawFeedInfo(rawFeedInfo):FeedInfo {
+    return new FeedInfoWrapper(rawFeedInfo);
+}
+
+class AppStateWrapper implements AppState {
 
     private state:Map<string,any> = null;
 
@@ -65,4 +71,8 @@ export class AppStateWrapper implements AppState {
     public mutate(changes:AppStateChange) {
         return new AppStateWrapper(this.state.merge(changes));
     }
+}
+
+export function wrapRawAppState(rawState:AppStateChange):AppState {
+    return new AppStateWrapper(Map<string,any>(rawState));
 }

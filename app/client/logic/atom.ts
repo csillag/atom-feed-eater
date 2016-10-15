@@ -5,7 +5,7 @@ import { List, Map } from 'immutable';
 const parseAtomFeedWithFeedParser = require('node-feedparser');
 const xml2js = require('xml2js').parseString;
 
-import { FeedWrapper } from '../logic/wrappers';
+import { wrapRawFeedInfo } from '../logic/wrappers';
 const enrichFeed = require('./atom-enrichment');
 
 export interface Article {
@@ -42,7 +42,7 @@ export function parseAtomFeed(input:string,
                         callback(error, null);
                     } else {
                         enrichFeed(feed, json);
-                        callback(null, new FeedWrapper(feed));
+                        callback(null, wrapRawFeedInfo(feed));
                     }
                 })
             }
