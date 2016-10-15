@@ -1,11 +1,9 @@
 // Here we collect our atom-related logic
 
-import { List, Map } from 'immutable';
-
 const parseAtomFeedWithFeedParser = require('node-feedparser');
 const xml2js = require('xml2js').parseString;
 
-import { wrapRawFeedInfo } from '../logic/wrappers';
+import { wrapRawFeedInfo, ArticleList } from '../logic/wrappers';
 const enrichFeed = require('./atom-enrichment');
 
 export interface Article {
@@ -20,7 +18,7 @@ export interface Article {
 
 export interface FeedInfo {
     getSite(): Article;
-    getItems(): List<Article>;
+    getItems(): ArticleList;
 }
 
 // This is the entry point for parsing an atom feed.

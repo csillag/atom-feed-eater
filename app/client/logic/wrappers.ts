@@ -28,6 +28,8 @@ function wrapRawArticle(rawArticle):Article {
     return new ArticleWrapper(rawArticle);
 }
 
+export type ArticleList = List<Article>;
+
 class FeedInfoWrapper implements FeedInfo {
 
     private state:Map<string,any> = null;

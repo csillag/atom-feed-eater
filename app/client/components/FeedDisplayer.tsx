@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { List } from 'immutable';
 
+import { ArticleList } from '../logic/wrappers';
 import { Article, FeedInfo } from '../logic/atom';
 
 import styles from './FeedDisplayer.css';
@@ -49,7 +49,7 @@ const renderArticle = (item:Article) => {
     </div>);
 }
 
-const renderArticles = (items:List<Article>) => {
+const renderArticles = (items:ArticleList) => {
     if (items.size == 0) {
         return (<span>No articles found.</span>) as any;
     }
