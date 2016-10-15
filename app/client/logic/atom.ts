@@ -1,27 +1,32 @@
 // Here we collect our atom-related logic
 
+import { List, Map } from 'immutable';
+
 const parseAtomFeedWithFeedParser = require('node-feedparser');
 const xml2js = require('xml2js').parseString;
 
+import { FeedWrapper } from '../logic/wrappers';
 const enrichFeed = require('./atom-enrichment');
 
 export interface Article {
-    author?: string;
-    date: Date;
-    description?: string;
-    link: string;
-    title: string
-    summary?: string;
-    image?: string;
+    getAuthor(): string;
+    getDate(): Date;
+    getDescription(): string;
+    getLink(): string;
+    getTitle(): string
+    getSummary(): string;
+    getImage(): string;
 }
 
-export interface AtomFeedInfo {
-    site: Article;
-    items: Article[];
+export interface FeedInfo {
+    getSite(): Article;
+    getItems(): List<Article>;
 }
 
 // This is the entry point for parsing an atom feed.
-export function parseAtomFeed(input:string, callback:(error,ret)=>void) {
+export function parseAtomFeed(input:string,
+    callback:(error:string,ret)=>void
+) {
     // We are going to do three things:
     // 1. Parse the XML feed with node-feedparser
     // 2. Also convert the XML feed into a JSON object
@@ -37,7 +42,7 @@ export function parseAtomFeed(input:string, callback:(error,ret)=>void) {
                         callback(error, null);
                     } else {
                         enrichFeed(feed, json);
-                        callback(null, feed);
+                        callback(null, new FeedWrapper(feed));
                     }
                 })
             }

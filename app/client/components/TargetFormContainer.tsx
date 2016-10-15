@@ -12,10 +12,10 @@ import { TargetForm, TargetFormProps } from './TargetForm';
 
 function mapStateToProps(state:AppState):TargetFormProps {
     return {
-        url: state.url,
-        fetching: state.fetching,
-        parsing: state.parsing,
-        errorMessage: state.urlErrorMessage,
+        url: state.getUrl(),
+        fetching: state.isLoading(),
+        parsing: state.isProcessing(),
+        errorMessage: state.getUrlErrorMessage(),
     }
 }
 

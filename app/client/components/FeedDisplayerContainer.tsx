@@ -11,7 +11,7 @@ import { FeedDisplayer, FeedDisplayerProps } from './FeedDisplayer';
 
 function mapStateToProps(state:AppState):FeedDisplayerProps {
     return {
-        feed: state.feed
+        feed: state.getFeed()
     }
 }
 

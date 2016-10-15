@@ -3,25 +3,26 @@
 
 const validUrl = require('valid-url');
 
+import { AppState } from '../data/state';
 import { store } from '../data/store';
 import { editUrl, submitUrl, urlError, load, parsingStarted, parseError, feedParsed } from '../data/actions';
 import { extractDataFromProxyResponse } from '../logic/proxy';
 import { parseAtomFeed } from '../logic/atom';
 
 store.subscribe(() => {
-    const state = store.getState();
-    if (state.shouldFetch) {
+    const state:AppState = store.getState();
+    if (state.shouldLoad()) {
         // The "should fetch" flag is set, which means we should try to fetch the data.
-        if (validUrl.isUri(state.url)) { // Is this a valid URL?
+        if (validUrl.isUri(state.getUrl())) { // Is this a valid URL?
             // Therefore we dispatch the action to load the URL.
-            store.dispatch(load(state.url));
+            store.dispatch(load(state.getUrl()));
         } else { // No, URL is invalid
             store.dispatch(urlError("This doesn't seem to be a valid URL!"));
         }
-    } else if (state.shouldParse) {
+    } else if (state.shouldProcess()) {
         // We should parse the proxy response
         store.dispatch(parsingStarted());
-        const result = extractDataFromProxyResponse(state.incomingResponse); // Extract the feed from the proxy response
+        const result = extractDataFromProxyResponse(state.getIncomingResponse()); // Extract the feed from the proxy response
         if (result) {
             parseAtomFeed(result, (error, ret) => {
                 if (error) {

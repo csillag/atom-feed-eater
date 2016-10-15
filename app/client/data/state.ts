@@ -1,24 +1,25 @@
+import { FeedInfo } from '../logic/atom';
 
-import { AtomFeedInfo } from '../logic/atom';
-
-export interface PartialAppState {
+export interface AppStateChange {
     url?:string;
     urlErrorMessage?:string;
-    shouldFetch?: boolean; // To trigger loading
-    fetching?: boolean;
+    shouldLoad?: boolean; // To trigger loading
+    isLoading?: boolean;
     incomingResponse?: string;
-    shouldParse?: boolean; // To trigger parsing
-    parsing?: boolean;
-    feed?: AtomFeedInfo;
+    shouldProcess?: boolean; // To trigger parsing
+    isProcessing?: boolean;
+    feed?: FeedInfo;
 }
 
-export interface AppState extends PartialAppState {
-    url:string;
-    urlErrorMessage:string;
-    shouldFetch: boolean; // To trigger loading
-    fetching: boolean;
-    incomingResponse: string;
-    shouldParse: boolean; // To trigger parsing
-    parsing: boolean;
-    feed: AtomFeedInfo;
+export interface AppState {
+    getUrl():string;
+    getUrlErrorMessage():string;
+    shouldLoad(): boolean; // To trigger loading
+    isLoading(): boolean;
+    getIncomingResponse(): string;
+    shouldProcess(): boolean; // To trigger parsing
+    isProcessing(): boolean;
+    getFeed(): FeedInfo;
+
+    mutate(change:AppStateChange):AppState;
 }
