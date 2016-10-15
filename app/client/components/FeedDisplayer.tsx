@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ArticleList } from '../logic/wrappers';
+import { ArticleList } from '../data/wrappers';
 import { Article, FeedInfo } from '../logic/atom';
 
 import styles from './FeedDisplayer.css';

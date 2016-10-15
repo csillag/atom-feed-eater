@@ -4,8 +4,8 @@
 // dedicated (and type-safe) getters for our data fields.
 
 import { List, Map } from 'immutable';
-import { AppState, AppStateChange } from '../data/state';
-import { Article, FeedInfo } from './atom';
+import { AppState, AppStateChange } from './state';
+import { Article, FeedInfo } from '../logic/atom';
 
 class ArticleWrapper implements Article {
 

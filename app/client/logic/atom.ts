@@ -3,7 +3,7 @@
 const parseAtomFeedWithFeedParser = require('node-feedparser');
 const xml2js = require('xml2js').parseString;
 
-import { wrapRawFeedInfo, ArticleList } from '../logic/wrappers';
+import { wrapRawFeedInfo, ArticleList } from '../data/wrappers';
 const enrichFeed = require('./atom-enrichment');
 
 export interface Article {

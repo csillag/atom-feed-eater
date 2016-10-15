@@ -1,7 +1,7 @@
 // The file containes Redux reducer function
 
 import { AppStateChange, AppState } from './state';
-import { wrapRawAppState } from '../logic/wrappers';
+import { wrapRawAppState } from './wrappers';
 import { Action,
          EDIT_URL, SUBMIT_URL, URL_ERROR,
          LOAD, LOAD_FAIL, LOAD_SUCCESS,
