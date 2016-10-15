@@ -2,7 +2,18 @@
   "name": "app",
   "private": true,
   "scripts": {
+    "test": "jest",
+    "test-watch": "jest --watch",
     "start": "meteor run"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "scriptPreprocessor": "<rootDir>/scripts/preprocessor.js",
+    "testRegex": ".*\\.test\\.(ts|tsx|js)$"
   },
   "dependencies": {
     "axios": "^0.15.0",
@@ -16,7 +27,11 @@
     "react-redux": "^4.4.5",
     "redux": "^3.6.0",
     "redux-axios-middleware": "^3.0.0",
+    "typescript": "^2.0.3",
     "valid-url": "^1.0.9",
     "xml2js": "^0.4.17"
+  },
+  "devDependencies": {
+    "jest": "^16.0.1"
   }
 }
