@@ -1,0 +1,9 @@
+Executed:
+
+meteor npm install --save-dev babel-preset-meteor babel-plugin-react-transform react-transform-hmr react-transform-catch-errors redbox-react
+meteor remove ecmascript
+meteor add gadicc:ecmascript-hot@2.0.0-beta.3
+
+As it stands, this doesn't work properly, because the meteor-hmr component hasn't yet been updated to handle
+Meteor 1.4
+
