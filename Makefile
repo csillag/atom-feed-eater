@@ -12,4 +12,5 @@ build: prepare
 	@echo "This directory hosts the statically built demo. See here: http://csillag.github.io/atom-feed-eater" > docs/readme.md
 
 clean:
-	@rm -rf app/node_modules
+	@rm -rf app/node_modules app/.meteor/local
+
